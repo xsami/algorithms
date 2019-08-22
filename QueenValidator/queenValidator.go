@@ -22,11 +22,16 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
 
 	// Validate current position, with an obstacle
 	if matrix[currentPosition.Y][currentPosition.X] == TAKEN && currentPosition.X != prevPosition.X {
-		return false
+		if currentPosition.Y != prevPosition.Y { // Validate this isn't the start position
+			return false
+		}
 	}
+
 	// Validate if you came from Up and the current position is Free
 	if matrix[currentPosition.Y][currentPosition.X] == FREE && currentPosition.X == prevPosition.X {
-		return false
+		if currentPosition.Y != prevPosition.Y { // Validate this isn't the start position
+			return false
+		}
 	}
 
 	// return true if you did hit the last row in a safe place
@@ -47,6 +52,7 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
 		return true
 	}
 
+	// Didn't became Queen
 	return false
 }
 
@@ -59,6 +65,8 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
  * Allowed moves:
  * 		1. Move in diagonal down level
  *      2. Eat the obstacles down level
+ *      3. You can start in any position between 0 and width (Don't validate obstacle)
+ *      4. You can start in any position between 0 and heigth (Don't validate obstacle)
  *
  * Not allowed moves:
  *		1. You cannot go up level
