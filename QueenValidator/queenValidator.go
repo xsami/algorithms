@@ -3,10 +3,20 @@ package main
 import "fmt"
 
 var FREE, TAKEN byte
+var memo [][]byte
 
 type Position struct {
 	X int // This is the width position
 	Y int // This is the heigth position
+}
+
+// This function will fill a matrix with the value sent
+func memset(matrix [][]byte, value byte) {
+	for i, slice := range matrix {
+		for j, _ := range slice {
+			matrix[i][j] = value
+		}
+	}
 }
 
 // TODO: Make an enhacement to implement memoization on this problem. Too many recursion calls
@@ -90,12 +100,15 @@ func main() {
 		{FREE, FREE, FREE, TAKEN, FREE, FREE, FREE},
 		{TAKEN, FREE, TAKEN, FREE, FREE, FREE, TAKEN}}
 
+	memo = table[:] // create a table copy
+	memset(memo, FREE)
+
 	begin := Position{
 		X: 0,
 		Y: 0}
 
 	fmt.Printf("The Pawn starting at the position:\n%+v\n"+
 		"Using the following table:\n%+v\nCan become a Queen? %v",
-		begin, table, canBeQueen(table, begin))
+		begin, memo, canBeQueen(table, begin))
 
 }
