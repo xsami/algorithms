@@ -11,22 +11,16 @@ type Position struct {
 	Y int // This is the heigth position
 }
 
-// This function will fill a matrix with the value sent
-func memset(matrix [][]byte, value byte) {
-	for i, slice := range matrix {
-		for j, _ := range slice {
+// This function return a matrix with the value sent
+func memset(value byte, heigth int, width int) [][]byte {
+	matrix := make([][]byte, heigth)
+	for i, _ := range matrix {
+		matrix[i] = make([]byte, width)
+		for j, _ := range matrix[i] {
 			matrix[i][j] = value
 		}
 	}
-}
-
-// TODO: fix bug, copy array into a matrix
-func customCopy(matrixFrom [][]byte, matrixTo [][]byte) {
-
-	matrixTo = make([][]byte, len(matrixFrom))
-	for i, arr := range matrixFrom {
-		matrixTo[i] = append(matrixTo[i], arr...)
-	}
+	return matrix
 }
 
 func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Position, end int) bool {
@@ -62,7 +56,7 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
 	}
 
 	// return true if you did hit the last row in a safe place
-	if currentRow == end {
+	if currentRow == end || memo[currentRow][currentColumn] == GOAL {
 		memo[currentRow][currentColumn] = GOAL
 		return true
 	}
@@ -70,7 +64,7 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
 	// Can go down ?
 	if nextRow < len(memo) {
 
-		if nextColumn < len(memo[nextRow]) { // Can I go foward ?
+		if nextColumn < len(memo[nextRow]) && memo[nextRow][nextColumn] == NOTVISITED { // Can I go foward ?
 			// Go to the rigth
 			if canBeQueen2(matrix, Position{X: nextColumn, Y: nextRow}, currentPosition, end) {
 				memo[nextRow][nextColumn] = GOAL
@@ -78,7 +72,7 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
 			}
 		}
 
-		if nextColumn > -1 {
+		if nextColumn > -1 && memo[nextRow][prevColumn] == NOTVISITED { // Can I go backward ?
 			// Go to the left
 			if canBeQueen2(matrix, Position{X: prevColumn, Y: nextRow}, currentPosition, end) {
 				memo[nextRow][prevColumn] = GOAL
@@ -86,10 +80,12 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
 			}
 		}
 
-		// Go down
-		if canBeQueen2(matrix, Position{X: currentColumn, Y: nextRow}, currentPosition, end) {
-			memo[nextRow][currentColumn] = GOAL
-			return true
+		if memo[nextRow][currentColumn] == NOTVISITED {
+			// Go down
+			if canBeQueen2(matrix, Position{X: currentColumn, Y: nextRow}, currentPosition, end) {
+				memo[nextRow][currentColumn] = GOAL
+				return true
+			}
 		}
 	}
 
@@ -136,8 +132,7 @@ func main() {
 		{FREE, FREE, FREE, TAKEN, FREE, FREE, FREE},
 		{TAKEN, FREE, TAKEN, FREE, FREE, FREE, TAKEN}}
 
-	customCopy(table, memo)  // create a table copy
-	memset(memo, NOTVISITED) // fill the table with not visited
+	memo = memset(NOTVISITED, len(table), len(table[0]))
 
 	begin := Position{
 		X: 0,
@@ -147,5 +142,4 @@ func main() {
 		"Using the following table:\n%+v\nCan become a Queen? %v",
 		begin, table, canBeQueen(table, begin))
 
-	fmt.Printf("\nDEBUG memo:\n%v", memo)
 }
