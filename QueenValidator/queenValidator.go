@@ -2,7 +2,8 @@ package main
 
 import "fmt"
 
-var FREE, TAKEN byte
+var FREE, TAKEN, VISITED, NOTVISITED, GOAL byte
+
 var memo [][]byte
 
 type Position struct {
@@ -22,43 +23,57 @@ func memset(matrix [][]byte, value byte) {
 // TODO: Make an enhacement to implement memoization on this problem. Too many recursion calls
 func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Position, end int) bool {
 
+	prevColumn := currentPosition.X - 1
+	currentRow := currentPosition.Y
+	currentColumn := currentPosition.X
+	nextRow := currentPosition.Y + 1
+	nextColumn := currentPosition.X + 1
+
 	// Validate the currentPosition, 0 or > len(matrix) must return false
-	if currentPosition.Y < 0 || currentPosition.Y >= len(matrix) {
+	if currentRow < 0 || currentRow >= len(matrix) {
 		return false
 	}
-	if currentPosition.X < 0 || currentPosition.X >= len(matrix[currentPosition.Y]) {
+	if currentColumn < 0 || currentColumn >= len(matrix[currentRow]) {
 		return false
 	}
 
 	// Validate current position, with an obstacle
-	if matrix[currentPosition.Y][currentPosition.X] == TAKEN && currentPosition.X != prevPosition.X {
-		if currentPosition.Y != prevPosition.Y { // Validate this isn't the start position
+	if matrix[currentRow][currentColumn] == TAKEN && currentColumn != prevPosition.X {
+		if currentRow != prevPosition.Y { // Validate this isn't the start position
+			memo[currentRow][currentColumn] = VISITED
 			return false
 		}
 	}
 
 	// Validate if you came from Up and the current position is Free
-	if matrix[currentPosition.Y][currentPosition.X] == FREE && currentPosition.X == prevPosition.X {
-		if currentPosition.Y != prevPosition.Y { // Validate this isn't the start position
+	if matrix[currentRow][currentColumn] == FREE && currentColumn == prevPosition.X {
+		if currentRow != prevPosition.Y { // Validate this isn't the start position
+			memo[currentRow][currentColumn] = VISITED
 			return false
 		}
 	}
 
 	// return true if you did hit the last row in a safe place
-	if currentPosition.Y == end {
+	if currentRow == end {
+		memo[currentRow][currentColumn] = GOAL
 		return true
 	}
 
 	// Go to the rigth
-	if canBeQueen2(matrix, Position{X: currentPosition.X + 1, Y: currentPosition.Y + 1}, currentPosition, end) {
+	// if val := memo[nextRow][nextColumn]; val == NOTVISITED {
+	if canBeQueen2(matrix, Position{X: nextColumn, Y: nextRow}, currentPosition, end) {
+		memo[currentRow][currentColumn] = GOAL
 		return true
 	}
+	// }
 	// Go to the left
-	if canBeQueen2(matrix, Position{X: currentPosition.X - 1, Y: currentPosition.Y + 1}, currentPosition, end) {
+	if canBeQueen2(matrix, Position{X: prevColumn, Y: nextRow}, currentPosition, end) {
+		memo[currentRow][currentColumn] = GOAL
 		return true
 	}
 	// Go down
-	if canBeQueen2(matrix, Position{X: currentPosition.X, Y: currentPosition.Y + 1}, currentPosition, end) {
+	if canBeQueen2(matrix, Position{X: currentPosition.X, Y: nextRow}, currentPosition, end) {
+		memo[currentRow][currentColumn] = GOAL
 		return true
 	}
 
@@ -90,7 +105,7 @@ func canBeQueen(matrix [][]byte, start Position) bool {
 
 func main() {
 
-	FREE, TAKEN = 0, 1
+	FREE, TAKEN, VISITED, NOTVISITED, GOAL = 0, 1, 1, 0, 2
 
 	table := [][]byte{
 		{FREE, FREE, FREE, FREE, FREE, TAKEN, FREE},
@@ -101,7 +116,7 @@ func main() {
 		{TAKEN, FREE, TAKEN, FREE, FREE, FREE, TAKEN}}
 
 	memo = table[:] // create a table copy
-	memset(memo, FREE)
+	memset(memo, NOTVISITED)
 
 	begin := Position{
 		X: 0,
