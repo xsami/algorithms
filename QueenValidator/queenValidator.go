@@ -20,7 +20,15 @@ func memset(matrix [][]byte, value byte) {
 	}
 }
 
-// TODO: Make an enhacement to implement memoization on this problem. Too many recursion calls
+// TODO: fix bug, copy array into a matrix
+func customCopy(matrixFrom [][]byte, matrixTo [][]byte) {
+
+	matrixTo = make([][]byte, len(matrixFrom))
+	for i, arr := range matrixFrom {
+		matrixTo[i] = append(matrixTo[i], arr...)
+	}
+}
+
 func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Position, end int) bool {
 
 	prevColumn := currentPosition.X - 1
@@ -59,25 +67,34 @@ func canBeQueen2(matrix [][]byte, currentPosition Position, prevPosition Positio
 		return true
 	}
 
-	// Go to the rigth
-	// if val := memo[nextRow][nextColumn]; val == NOTVISITED {
-	if canBeQueen2(matrix, Position{X: nextColumn, Y: nextRow}, currentPosition, end) {
-		memo[currentRow][currentColumn] = GOAL
-		return true
-	}
-	// }
-	// Go to the left
-	if canBeQueen2(matrix, Position{X: prevColumn, Y: nextRow}, currentPosition, end) {
-		memo[currentRow][currentColumn] = GOAL
-		return true
-	}
-	// Go down
-	if canBeQueen2(matrix, Position{X: currentPosition.X, Y: nextRow}, currentPosition, end) {
-		memo[currentRow][currentColumn] = GOAL
-		return true
+	// Can go down ?
+	if nextRow < len(memo) {
+
+		if nextColumn < len(memo[nextRow]) { // Can I go foward ?
+			// Go to the rigth
+			if canBeQueen2(matrix, Position{X: nextColumn, Y: nextRow}, currentPosition, end) {
+				memo[nextRow][nextColumn] = GOAL
+				return true
+			}
+		}
+
+		if nextColumn > -1 {
+			// Go to the left
+			if canBeQueen2(matrix, Position{X: prevColumn, Y: nextRow}, currentPosition, end) {
+				memo[nextRow][prevColumn] = GOAL
+				return true
+			}
+		}
+
+		// Go down
+		if canBeQueen2(matrix, Position{X: currentColumn, Y: nextRow}, currentPosition, end) {
+			memo[nextRow][currentColumn] = GOAL
+			return true
+		}
 	}
 
 	// Didn't became Queen
+	memo[currentRow][currentColumn] = VISITED
 	return false
 }
 
@@ -105,7 +122,11 @@ func canBeQueen(matrix [][]byte, start Position) bool {
 
 func main() {
 
-	FREE, TAKEN, VISITED, NOTVISITED, GOAL = 0, 1, 1, 0, 2
+	FREE = 0
+	TAKEN = 1
+	VISITED = 1
+	NOTVISITED = 0
+	GOAL = 2
 
 	table := [][]byte{
 		{FREE, FREE, FREE, FREE, FREE, TAKEN, FREE},
@@ -115,8 +136,8 @@ func main() {
 		{FREE, FREE, FREE, TAKEN, FREE, FREE, FREE},
 		{TAKEN, FREE, TAKEN, FREE, FREE, FREE, TAKEN}}
 
-	memo = table[:] // create a table copy
-	memset(memo, NOTVISITED)
+	customCopy(table, memo)  // create a table copy
+	memset(memo, NOTVISITED) // fill the table with not visited
 
 	begin := Position{
 		X: 0,
@@ -124,6 +145,7 @@ func main() {
 
 	fmt.Printf("The Pawn starting at the position:\n%+v\n"+
 		"Using the following table:\n%+v\nCan become a Queen? %v",
-		begin, memo, canBeQueen(table, begin))
+		begin, table, canBeQueen(table, begin))
 
+	fmt.Printf("\nDEBUG memo:\n%v", memo)
 }
