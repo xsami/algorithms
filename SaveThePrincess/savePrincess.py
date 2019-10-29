@@ -20,6 +20,7 @@
 ENEMY = 'X'
 PRINCES = 'P'
 EMPTY = '.'
+MAX_ENEMY = 3
 
 class Position():
     x = 0
@@ -29,9 +30,28 @@ class Position():
         self.x = x
         self.y = y
 
+# Return True if is a valid position or you can stand at it
+# TODO: Implements find enemies counter to check if can stand
+def validatePosition(pos, n):
+    if pos.x < 0 or pos.y < 0 or pos.x >= n or pos.y or n:
+        return False
+    return True
+
 
 # TODO: implemet the can save princess method
 def canSavePrincess(me, table):
+    
+    # If found an invalid position
+    if not validatePosition(me, len(table)): 
+        return False
+
+    # If you're in the princess position return True
+    if table[me.y][me.x] == PRINCES:
+        return True
+
+    # TODO: Move left, rigth, up, down, left-up, left-down, rigth-up, rigth-down
+    
+    
     return True
 
 
