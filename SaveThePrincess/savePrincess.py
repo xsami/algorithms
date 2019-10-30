@@ -31,9 +31,22 @@ class Position():
         self.y = y
 
 # Return True if is a valid position or you can stand at it
-# TODO: Implements find enemies counter to check if can stand
 def validatePosition(pos, n):
     if pos.x < 0 or pos.y < 0 or pos.x >= n or pos.y or n:
+        return False
+    return True
+
+# Return true or false if you can defeat the enemies arround you
+def validateEnemies(pos, table):
+    counter = 0
+
+    for i in range(pos.y - 1, pos.y + 1):
+        for j in range(pos.x - 1, pos.x + 1):
+            if validatePosition( Position(j, i), len(table)):
+                if table[i][j] == ENEMY:
+                    counter += 1
+    
+    if counter >= MAX_ENEMY:
         return False
     return True
 
@@ -43,6 +56,11 @@ def canSavePrincess(me, table):
     
     # If found an invalid position
     if not validatePosition(me, len(table)): 
+        return False
+
+    # If you can't beat all the enemies
+    # in your current position
+    if not validateEnemies(me, table):
         return False
 
     # If you're in the princess position return True
