@@ -32,7 +32,7 @@ class Position():
 
 # Return True if is a valid position or you can stand at it
 def validatePosition(pos, n):
-    if pos.x < 0 or pos.y < 0 or pos.x >= n or pos.y or n:
+    if pos.x < 0 or pos.y < 0 or pos.x >= n or pos.y >= n:
         return False
     return True
 
