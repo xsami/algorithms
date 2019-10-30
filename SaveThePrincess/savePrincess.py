@@ -52,25 +52,33 @@ def validateEnemies(pos, table):
 
 
 # TODO: implemet the can save princess method
-def canSavePrincess(me, table):
+def canSavePrincess(me, table, start=True):
     
+    # TODO: Complete start flag to build a temp global tmp table
+    # and check if the position has been visited, to don't repeat
+    # and avoid enlees recursion process.
+
     # If found an invalid position
     if not validatePosition(me, len(table)): 
-        return False
-
-    # If you can't beat all the enemies
-    # in your current position
-    if not validateEnemies(me, table):
         return False
 
     # If you're in the princess position return True
     if table[me.y][me.x] == PRINCES:
         return True
 
-    # TODO: Move left, rigth, up, down, left-up, left-down, rigth-up, rigth-down
+    # If you can't beat all the enemies
+    # in your current position
+    if not validateEnemies(me, table):
+        return False
+
+    # TODO: Fix possible enless recursion
+    # Visiting the left, rigth, down, up, downleft, downrigth, upleft and uprigth
+    for i in range(me.y - 1, me.y + 1):
+        for j in range(me.x - 1, me.x + 1):
+            if i != me.y and j != me.x and canSavePrincess(Position(j, i), table, False):
+                return True
     
-    
-    return True
+    return False
 
 
 
