@@ -61,16 +61,16 @@ def canSavePrincess(me, table, start=True):
     if start:
         tmpTable = []
         for i in range(len(table)):
-            tmpTable[i] = []
+            tmpTable.append([])
             for j in range(len(table)):
-                tmpTable[i][j] = False
-
-    # Set the current position as visited
-    tmpTable[me.y][me.x] = True
+                tmpTable[i].append(False)
 
     # If found an invalid position
     if not validatePosition(me, len(table)): 
         return False
+
+    # Set the current position as visited
+    tmpTable[me.y][me.x] = True
 
     # If you're in the princess position return True
     if table[me.y][me.x] == PRINCES:
