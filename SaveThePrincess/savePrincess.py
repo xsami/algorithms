@@ -51,12 +51,21 @@ def validateEnemies(pos, table):
     return True
 
 
-# TODO: implemet the can save princess method
+# Save the princess main function. Resolve if you can save the princess
 def canSavePrincess(me, table, start=True):
     
-    # TODO: Complete start flag to build a temp global tmp table
-    # and check if the position has been visited, to don't repeat
-    # and avoid enlees recursion process.
+    global tmpTable
+
+    # Temporal table to check if the current cell was visited
+    if start:
+        tmpTable = []
+        for i in range(len(table)):
+            tmpTable[i] = []
+            for j in range(len(table)):
+                tmpTable[i][j] = False
+
+    # Set the current position as visited
+    tmpTable[me.y][me.x] = True
 
     # If found an invalid position
     if not validatePosition(me, len(table)): 
@@ -71,11 +80,10 @@ def canSavePrincess(me, table, start=True):
     if not validateEnemies(me, table):
         return False
 
-    # TODO: Fix possible enless recursion
     # Visiting the left, rigth, down, up, downleft, downrigth, upleft and uprigth
     for i in range(me.y - 1, me.y + 1):
         for j in range(me.x - 1, me.x + 1):
-            if i != me.y and j != me.x and canSavePrincess(Position(j, i), table, False):
+            if tmpTable[me.y][me.x] == False and canSavePrincess(Position(j, i), table, False):
                 return True
     
     return False
