@@ -21,6 +21,7 @@ ENEMY = 'X'
 PRINCES = 'P'
 EMPTY = '.'
 MAX_ENEMY = 3
+tmpTable = []
 
 class Position():
     x = 0
@@ -83,7 +84,7 @@ def canSavePrincess(me, table, start=True):
     # Visiting the left, rigth, down, up, downleft, downrigth, upleft and uprigth
     for i in range(me.y - 1, me.y + 1):
         for j in range(me.x - 1, me.x + 1):
-            if if validatePosition(Position(j, i), len(table)):
+            if validatePosition(Position(j, i), len(table)):
                 if tmpTable[me.y][me.x] == False and canSavePrincess(Position(j, i), table, False):
                     return True
     
