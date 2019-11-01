@@ -6,6 +6,7 @@ var FREE, TAKEN, VISITED, NOTVISITED, GOAL byte
 
 var memo [][]byte
 
+// Position struct, is the structure for a x, y asciss
 type Position struct {
 	X int // This is the width position
 	Y int // This is the heigth position
@@ -14,9 +15,9 @@ type Position struct {
 // This function return a matrix with the value sent
 func memset(value byte, heigth int, width int) [][]byte {
 	matrix := make([][]byte, heigth)
-	for i, _ := range matrix {
+	for i := range matrix {
 		matrix[i] = make([]byte, width)
-		for j, _ := range matrix[i] {
+		for j := range matrix[i] {
 			matrix[i][j] = value
 		}
 	}

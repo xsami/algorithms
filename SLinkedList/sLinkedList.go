@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+// Node is a simple implementation of a node structure
 type Node struct {
 	Next  *Node
 	Value interface{}
@@ -29,7 +30,7 @@ func (n *Node) find(val interface{}) (int, error) {
 }
 
 func (n *Node) insert(val interface{}) {
-	
+
 	cur := n
 
 	for {
@@ -97,9 +98,9 @@ func main() {
 	} else {
 		fmt.Printf("Index: %v\n", idx)
 	}
-	
+
 	myNode.delete(3)
-	
+
 	if idx, err := myNode.find(3); err != nil {
 		fmt.Println(err)
 	} else {
