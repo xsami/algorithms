@@ -38,7 +38,7 @@ func climbingLeaderboard(scores []int32, alice []int32) []int32 {
 
 	res := []int32{}
 	repetitions := []int32{}
-	var prev int32 = 0
+	var prev int32
 
 	sort.Slice(scores, func(i, j int) bool { return scores[i] < scores[j] })
 
