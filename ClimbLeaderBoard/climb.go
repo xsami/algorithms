@@ -45,7 +45,7 @@ func climbingLeaderboard(scores []int32, alice []int32) []int32 {
 
 	// int32(len(scores))-
 	for idx, el := range res {
-		aliceScore := alice[idx]
+		// aliceScore := alice[idx]
 		pos := el
 		if el >= int32(len(scores)) {
 			pos = int32(len(scores) - 1)
@@ -58,15 +58,7 @@ func climbingLeaderboard(scores []int32, alice []int32) []int32 {
 			repIdx = 0
 		}
 
-		fmt.Println(aliceScore, scores[pos])
-		fmt.Println(repIdx)
-		finalPos := int32(len(scores)) - pos - repetitions[repIdx]
-
-		if aliceScore == scores[pos] {
-			finalPos += int32(1)
-		} else if aliceScore < scores[pos] {
-
-		}
+		finalPos := int32(repIdx + 1)
 
 		res[idx] = finalPos
 	}
