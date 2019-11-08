@@ -5,10 +5,14 @@ import (
 	"sort"
 )
 
+func oppositive(n, l int32) int32 {
+	return l - n
+}
+
 func upperBoundBS(start, end int32, scores []int32, find int32) int32 {
 
 	if start >= end {
-		return end
+		return start
 	}
 
 	mid := int32(start + (end-start)/2)
@@ -20,6 +24,14 @@ func upperBoundBS(start, end int32, scores []int32, find int32) int32 {
 		return upperBoundBS(start, mid, scores, find)
 	}
 	return upperBoundBS(mid+1, end, scores, find)
+}
+
+func getPrefixSum(rp []int32, pos int32, scores []int32, aliceScore int32) int32 {
+	var res int32
+	// tp := int32(len(scores)) - pos - 2
+	// fmt.Println(tp)
+	res = rp[0]
+	return res
 }
 
 func climbingLeaderboard(scores []int32, alice []int32) []int32 {
@@ -43,24 +55,19 @@ func climbingLeaderboard(scores []int32, alice []int32) []int32 {
 		res = append(res, upperBoundBS(0, int32(len(scores)-1), scores, int32(el)))
 	}
 
-	// int32(len(scores))-
+	fmt.Println(res)
 	for idx, el := range res {
-		// aliceScore := alice[idx]
+		aliceScore := alice[idx]
 		pos := el
-		if el >= int32(len(scores)) {
-			pos = int32(len(scores) - 1)
-		} else if el < 0 {
-			pos = 0
+		sc := scores[pos]
+
+		if aliceScore > sc {
+			pos++
+		} else if aliceScore < sc {
+			pos--
 		}
-
-		repIdx := len(repetitions) - int(pos) - 1
-		if repIdx < 0 {
-			repIdx = 0
-		}
-
-		finalPos := int32(repIdx + 1)
-
-		res[idx] = finalPos
+		fmt.Println(el)
+		res[idx] = int32(len(scores)) - pos - getPrefixSum(repetitions, pos, scores, aliceScore)
 	}
 
 	fmt.Println(repetitions)
@@ -69,7 +76,7 @@ func climbingLeaderboard(scores []int32, alice []int32) []int32 {
 
 func main() {
 
-	sc := []int32{100, 90, 90, 80, 75, 60}
+	sc := []int32{60, 75, 80, 90, 90, 100}
 	al := []int32{50, 65, 77, 90, 102}
 
 	result := climbingLeaderboard(sc, al)
