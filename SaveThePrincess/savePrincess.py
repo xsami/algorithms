@@ -93,8 +93,8 @@ def canSavePrincess(me, table, start=True):
 
 
 grid = [
-    [EMPTY, ENEMY, EMPTY, EMPTY],
-    [ENEMY, EMPTY, EMPTY, PRINCES],
+    [EMPTY, PRINCES, EMPTY, EMPTY],
+    [ENEMY, EMPTY, EMPTY, ENEMY],
     [ENEMY, EMPTY, EMPTY, ENEMY],
     [EMPTY, ENEMY, ENEMY, EMPTY]
 ]
