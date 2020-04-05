@@ -18,6 +18,10 @@
  *          * Softball
  *          * Baseball
  *          * Soccer
+ * 
+ * Note: We would probrably like to also implement a function that converts
+ * markdown to HTML so it would be usefull to keep this in mind for the current
+ * implementation of your solution
  */
 
 const exampleHTML = `
