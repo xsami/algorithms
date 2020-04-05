@@ -12,8 +12,8 @@
  * The output for the following example input is:
  *      # Sport News
  *      #### With the current information about the sports in the world
- *      The foundation that Denzel Ward established after reaching the NFL as a first-round pick with his hometown Cleveland Browns is dubbed Make Them Know Your Name (MTKYN). The term is a tribute to Ward’s late father, Paul, who repeated that inspirational mantra as his son emerged as a star athlete.
- *      Favorite Sports in DR:
+ *      The **foundation** that _Denzel Ward_ established after reaching the NFL as a first-round pick with his hometown Cleveland Browns is dubbed Make Them Know Your Name (MTKYN). The term is a tribute to Ward’s late father, Paul, who repeated that inspirational mantra as his son emerged as a star athlete.
+ *      Favorite Sports in **DR**:
  *          * Basketball
  *          * Softball
  *          * Baseball
@@ -23,8 +23,8 @@
 const exampleHTML = `
 <h1>Sport News</h1>
 <h4>With the current information about the sports in the world</h4>
-<p>The foundation that Denzel Ward established after reaching the NFL as a first-round pick with his hometown Cleveland Browns is dubbed Make Them Know Your Name (MTKYN). The term is a tribute to Ward’s late father, Paul, who repeated that inspirational mantra as his son emerged as a star athlete.</p>
-<p>Favorite Sports in DR:</p>
+<p>The <strong>foundation</strong> that <em>Denzel Ward</em> established after reaching the NFL as a first-round pick with his hometown Cleveland Browns is dubbed Make Them Know Your Name (MTKYN). The term is a tribute to Ward’s late father, Paul, who repeated that inspirational mantra as his son emerged as a star athlete.</p>
+<p>Favorite Sports in <strong>DR</strong>:</p>
 <ul>
 <li>Basketball</li>
 <li>Softball</li>
