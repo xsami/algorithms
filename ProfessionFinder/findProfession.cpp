@@ -1,3 +1,4 @@
+// Problem url: https://app.codesignal.com/interview-practice/task/FwAR7koSB3uYYsqDp
 std::string ENGINEER = "Engineer";
 std::string DOCTOR = "Doctor";
 
