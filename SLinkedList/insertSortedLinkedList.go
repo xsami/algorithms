@@ -1,3 +1,5 @@
+package main
+
 // Solution for problem: https://app.codesignal.com/challenge/XDFFwxLCs52YeJb9H
 
 // Note: Your solution should have O(n) time complexity, where n is the number of elements in l, since this is what you will be asked to accomplish in an interview.
@@ -15,14 +17,11 @@
 // For l = [1, 3, 4, 6] and value = 0, the output should be
 // insertValueIntoSortedLinkedList(l, value) = [0, 1, 3, 4, 6].
 
-package SLinkedList
-
-// Singly-linked lists are already defined with this interface:
-// type ListNode struct {
-//   Value interface{}
-//   Next *ListNode
-// }
-//
+// ListNode is a Singly-linked lists are already defined with this interface:
+type ListNode struct {
+	Value interface{}
+	Next  *ListNode
+}
 
 func insertValueIntoSortedLinkedList(l *ListNode, value int) *ListNode {
 
