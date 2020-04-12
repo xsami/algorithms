@@ -9,6 +9,9 @@
 // For names = ["doc", "doc", "image", "doc(1)", "doc"], the output should be
 // fileNaming(names) = ["doc", "doc(1)", "image", "doc(1)(1)", "doc(2)"].
 
+
+// TODO: refactoring, clean the way the elements are mapped in the data structure
+
 const mapping = {};
 
 function MapElement(element) {
