@@ -15,7 +15,7 @@ arrForEach.forEach(e => console.log(e));
 arrForEach.customForEach(e => console.log(e));
 
 
-// .some() function loop through the array and return false if any of the value doesnt meet
+// .every() function loop through the array and return false if any of the value doesnt meet
 // the callback argument
 Array.prototype.customEvery = function(callback) {
     for (let i = 0; i < this.length; i++) {
