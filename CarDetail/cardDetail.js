@@ -1,6 +1,6 @@
 // Car "class", definition of a car 
-function Car(brands, model) {
-    this.brands = brands;
+function Car(brand, model) {
+    this.brand = brand;
     this.model = model;
 }
 
@@ -11,30 +11,30 @@ function getDetailCar(cardList) {
     let mapCars = {};
 
     cardList.forEach(carObj => {
-        brands = carObj.brands;
+        brand = carObj.brand;
         model = carObj.model;
 
-        if (mapCars[brands] == undefined) {
-            mapCars[brands] = {
+        if (mapCars[brand] == undefined) {
+            mapCars[brand] = {
                 total: 1,
-                name: brands,
+                name: brand,
                 models: {
                     [model]: 1
                 }
             };
         } else {
-            mapCars[brands].total++;
-            if ( mapCars[brands].models[model] == undefined) {
-                mapCars[brands].models[model] = 1;
+            mapCars[brand].total++;
+            if ( mapCars[brand].models[model] == undefined) {
+                mapCars[brand].models[model] = 1;
             } else {
-                mapCars[brands].models[model]++;
+                mapCars[brand].models[model]++;
             }
         }
     });
 
     return {
         details: {
-            brands: mapCars
+            brand: mapCars
         }
     };
 
