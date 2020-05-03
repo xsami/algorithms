@@ -1,5 +1,7 @@
 package main
 
+// Problem: https://www.hackerrank.com/challenges/climbing-the-leaderboard/problem
+
 import (
 	"fmt"
 	"sort"
@@ -28,8 +30,6 @@ func upperBoundBS(start, end int32, scores []int32, find int32) int32 {
 
 func getPrefixSum(rp []int32, pos int32, scores []int32, aliceScore int32) int32 {
 	var res int32
-	// tp := int32(len(scores)) - pos - 2
-	// fmt.Println(tp)
 	res = rp[0]
 	return res
 }
