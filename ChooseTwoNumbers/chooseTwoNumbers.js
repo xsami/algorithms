@@ -11,12 +11,10 @@ const FILLED = 1;
  * @returns {Map with the element of the array as keys} 
  */
 function generateDict(array) {
-    let res = {};
+    const res = {};
 
     array.forEach(element => {
-        if (res[element] === undefined) {
-            res[element] = FILLED;
-        }
+        res[element] = FILLED;
     });
 
     return res;
@@ -31,14 +29,9 @@ function Validator() {
     var parameters = [...arguments];
     return {
         find: function(key) {
-            parameters.forEach(element => {
-                if (element[key] === FILLED) {
-                    return true;
-                }
-            });
-            return false;
+            return parameters.some(element => element[key] === FILLED);
         }
-    }
+    };
 }
 
 /**
