@@ -1,0 +1,27 @@
+{
+  "name": "refactoring",
+  "version": "1.0.0",
+  "description": "Algorithm questions using javascript",
+  "main": "problem1.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xsami/algorithms.git"
+  },
+  "keywords": [
+    "algorithms",
+    "datasctructure",
+    "refactoring"
+  ],
+  "author": "xsami",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xsami/algorithms/issues"
+  },
+  "homepage": "https://github.com/xsami/algorithms#readme",
+  "dependencies": {
+    "jest": "^25.5.4"
+  }
+}
