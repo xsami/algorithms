@@ -8,13 +8,13 @@ import (
 )
 
 func getMaxDist(n, x, a, b int) int {
-	
+
 	var maxDist, bToBegin, aToEnd, sumSpace int
 
-	maxDist = int(math.Abs(float64(a - b))) // Calculate current distance
+	maxDist = int(math.Abs(float64(a - b)))  // Calculate current distance
 	bToBegin = int(math.Abs(float64(b - 1))) // Distance between b and 1 (first position)
-	aToEnd = int(math.Abs(float64(n - a))) // Distance between a and the last element
-	sumSpace = aToEnd + bToBegin // Adding all the distances
+	aToEnd = int(math.Abs(float64(n - a)))   // Distance between a and the last element
+	sumSpace = aToEnd + bToBegin             // Adding all the distances
 
 	if sumSpace <= x {
 		return n - 1
@@ -25,31 +25,27 @@ func getMaxDist(n, x, a, b int) int {
 	return maxDist
 }
 
-func Max(a, b int) int {
+func max(a, b int) int {
 	if a > b {
 		return a
 	}
 	return b
 }
 
-func Min(a, b int) int {
+func min(a, b int) int {
 	if a < b {
 		return a
 	}
 	return b
-}	
+}
 
 func main() {
 
 	var t, n, x, a, b int
 
-	fmt.Scanf("%d", &t)
-
-	for t > 0 {
-		t--
+	for fmt.Scanf("%d", &t); t > 0; t-- {
 		fmt.Scanf("%d%d%d%d", &n, &x, &a, &b)
-
-		fmt.Println(getMaxDist(n, x, Max(a, b), Min(a, b)))
+		fmt.Println(getMaxDist(n, x, max(a, b), min(a, b)))
 	}
 
 }
