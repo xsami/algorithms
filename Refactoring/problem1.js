@@ -1,3 +1,11 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getMessage = getMessage;
+exports.Stack = Stack;
+
 // Imagine you're in charge one of the service of a big micro service architecture
 // system which is currently running out of memory by the cost of thousend of operations
 // performed by the system and the high increase in the number of users that are using it
@@ -17,16 +25,17 @@
  * @param {array} list
  * @returns {string}
  */
-export function getMessage(list) {
-    let result = "";
+function getMessage(list) {
+  let result = "";
 
-    for (let i = 0; i < list.length; i++) {
-        if (list[i].startsWith('a') || list[i].startsWith('A')) continue;
-        result += (list[i] + " ");
-    }
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].startsWith('a') || list[i].startsWith('A')) continue;
+    result += list[i] + " ";
+  }
 
-    return result;
+  return result.trim();
 }
+
 
 /**
  * This function what it does is to create a "Stack" data structe
@@ -36,20 +45,19 @@ export function getMessage(list) {
  * @param {?any} element
  * @returns {object}
  */
-export function Stack(element) {
-    this.list = element ? [element] : [];
-    return {
-        push: e => { 
-            this.list.push(e); 
-        },
-        getLastElement: () => {
-            if (this.list.length > 0) {
-                return this.list[this.list.length - 1];
-            }
-        },
-        removeLastElement: () => {
-            return this.list.pop();
-        }
-    };
+function Stack(element) {
+  this.list = element ? [element] : [];
+  return {
+    push: e => {
+      this.list.push(e);
+    },
+    getLastElement: () => {
+      if (this.list.length > 0) {
+        return this.list[this.list.length - 1];
+      }
+    },
+    removeLastElement: () => {
+      return this.list.pop();
+    }
+  };
 }
-
