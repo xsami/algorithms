@@ -8,7 +8,7 @@ function Car(brand, model) {
 // a detailed object with the summary of each brand and model
 function getDetailCar(cardList) {
 
-    let mapCars = {};
+    const mapCars = {};
 
     cardList.forEach(carObj => {
         brand = carObj.brand;
@@ -46,10 +46,10 @@ function main(list) {
 
     // Build a list of type car
     list.forEach(element => {
-        carObjList.push(new Car(element[0], element[1]))
+        carObjList.push(new Car(element[0], element[1]));
     });
 
-    let r2 = getDetailCar(carObjList);
+    const r2 = getDetailCar(carObjList);
 
     console.log(r2);
 }
