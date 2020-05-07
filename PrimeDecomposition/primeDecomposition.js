@@ -1,3 +1,10 @@
+/**
+ * TODO: given a numer n, creates a funciton that return as string as a factor of prime numbers
+ * example:
+ * primeDecomposition(10) -> 2 * 5
+ * primeDecomposition(20) -> 2 * 2 * 5
+ */
+
 const primes = [];
 
 function sieve() {
