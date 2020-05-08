@@ -13,4 +13,5 @@ Try to complete the algorithm from this website: https://www.geeksforgeeks.org/f
 * Data Structures
 * Trade Off
 * Divide and Conquer
+* Graphs - strongly connected components
 * etc...
