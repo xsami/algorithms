@@ -34,12 +34,13 @@ function getDetailCar(cardList) {
 
     return {
         details: {
-            brand: mapCars
+            brands: Object.values(mapCars)
         }
     };
 
 }
 
+// This is the function that must be called to get the cars detailed
 function main(list) {
 
     const carObjList = [];
@@ -53,12 +54,3 @@ function main(list) {
 
     console.log(r2);
 }
-
-main([
-    ["Toyota", "Corolla"],
-    ["Toyota", "Corolla"],
-    ["Toyota", "Camry"],
-    ["Honda", "Accord"],
-    ["Hyundai", "Sonata"],
-    ["Hyundai", "SantaFe"]
-]);
