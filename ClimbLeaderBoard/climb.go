@@ -7,10 +7,6 @@ import (
 	"sort"
 )
 
-func oppositive(n, l int32) int32 {
-	return l - n
-}
-
 func upperBoundBS(start, end int32, scores []int32, find int32) int32 {
 
 	if start >= end {

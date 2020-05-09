@@ -8,7 +8,7 @@ const FILLED = 1;
  * received by parameter
  *
  * @param {*} array
- * @returns {Map with the element of the array as keys} 
+ * @returns {Map with the element of the array as keys}
  */
 function generateDict(array) {
     const res = {};
@@ -21,9 +21,9 @@ function generateDict(array) {
 }
 /**
  * Validates a key in a Map
- * 
+ *
  * @param {*} arguments that will be passed as a list
- * @returns {Object} public methods of this class.  
+ * @returns {Object} public methods of this class.
  */
 function Validator() {
     var parameters = [...arguments];
@@ -51,7 +51,7 @@ function chooseTwoNumbers(A, B) {
         for (let j = 0; j < B.length; j++) {
             const elementB = B[j];
             const sum = elementA + elementB;
-            
+
             if (!myValidator.find(sum)) {
                 return { elementA, elementB };
             }
@@ -62,4 +62,4 @@ function chooseTwoNumbers(A, B) {
 }
 
 // Section: Test Cases
-console.log(chooseTwoNumbers([-1, 3, 5, 7], [7, 5, 3, 2])); 
+console.log(chooseTwoNumbers([1, 3, 5, 7], [7, 5, 3, 1]));
