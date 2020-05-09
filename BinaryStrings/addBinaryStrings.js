@@ -1,33 +1,20 @@
 // Solution for problem: https://app.codesignal.com/challenge/dYHyPazDTukYyTN3o
 
-// Given two binary strings a and b, add them together and return the resulting string.
-
-// Example:
-
-// For a = "1000" and b = "111", the output should be
-// addBinaryStrings(a, b) = "1111";
-// For a = "1" and b = "1", the output should be
-// addBinaryStrings(a, b) = "10".
-
 function getLastDigit(x) {
     return x.substr(x.length - 1);
 }
 
-function getCurrentDigit(a, b, m) {
-    const ca = +(getLastDigit(a)),
-          cb = +(getLastDigit(b)),
-          cm = +(getLastDigit(m)),
-          sum = ca + cb + cm;
+function stringSumLastDigit(...elements) {
+    return [...elements].reduce((prev, curr) => +(getLastDigit(curr)) + prev, 0);
+}
 
+function getCurrentDigit(a, b, m) {
+    const sum = stringSumLastDigit(a, b, m);
     return (sum % 2) + '';
 }
 
 function getMod(a, b, m) {
-    const ca = +(getLastDigit(a)),
-          cb = +(getLastDigit(b)),
-          cm = +(getLastDigit(m)),
-          sum = ca + cb + cm;
-    
+    const sum = stringSumLastDigit(a, b, m);
     return sum < 2 ? '0' : '1';
 }
 
@@ -37,6 +24,7 @@ function addBinaryStrings(a, b, mod = '0', res = []) {
     }
     res.push(getCurrentDigit(a, b, mod));
     mod = getMod(a, b, mod);
+    // Reduce the strings by removing last element from its
     a = a.substr(0, a.length - 1);
     b = b.substr(0, b.length - 1);
 

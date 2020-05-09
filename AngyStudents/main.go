@@ -20,11 +20,11 @@ func getLongetSubSequence(str, chr string) int {
 			counter = 0
 			angered = true
 		}
-	
+
 	}
-	
+
 	if counter > result {
-			result = counter
+		result = counter
 	}
 
 	return result
@@ -36,7 +36,7 @@ func main() {
 	var students string
 	fmt.Scanf("%d", &t)
 
-	for i := 0; i< t; i++ {
+	for i := 0; i < t; i++ {
 		fmt.Scanf("%d\n%v", &l, &students)
 		fmt.Println(getLongetSubSequence(students, "P"))
 	}
