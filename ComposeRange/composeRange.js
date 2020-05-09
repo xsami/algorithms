@@ -1,13 +1,5 @@
 // Solution for problem: https://app.codesignal.com/interview-practice/task/cHYqbQ9DiWmejAdeG/
 
-// Given a sorted integer array that does not contain any duplicates, return a summary of the number ranges it contains.
-
-// Example
-
-// For nums = [-1, 0, 1, 2, 6, 7, 9], the output should be
-// composeRanges(nums) = ["-1->2", "6->7", "9"].
-
-
 function getRanges(nums, result, index, prevValue, lvl) {
     if (index >= nums.length) {
         return;
