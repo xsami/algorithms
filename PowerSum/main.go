@@ -25,9 +25,8 @@ func powerSum(n int) int64 {
 func main() {
 	var t int
 	var n int
-	for fmt.Scanf("%d", &t); t > 0; t-- {
-		// fmt.Scanf("%d", &n);  // cause codeforce looks to be reading two values uncomment this scan.
-		fmt.Scanf("%d", &n);
-		fmt.Println(powerSum(n));
+	for fmt.Scanf("%d\n", &t); t > 0; t-- {
+		fmt.Scanf("%d\n", &n)
+		fmt.Println(powerSum(n))
 	}
 }
