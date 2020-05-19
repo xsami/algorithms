@@ -15,6 +15,3 @@ Try to complete the algorithm from this website: https://www.geeksforgeeks.org/f
 * Divide and Conquer
 * Graphs - strongly connected components
 * etc...
-
-
-Revert this commit
