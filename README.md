@@ -14,4 +14,5 @@ Try to complete the algorithm from this website: https://www.geeksforgeeks.org/f
 * Trade Off
 * Divide and Conquer
 * Graphs - strongly connected components
+* i18n
 * etc...
