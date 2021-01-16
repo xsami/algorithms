@@ -1,5 +1,5 @@
 const console = require("console");
-
+// rotate matrix algorithm
 function rotateMatrix(matrix) {
     const len = matrix.length;
     for (let i = 0; i < len - 1; i++) {
