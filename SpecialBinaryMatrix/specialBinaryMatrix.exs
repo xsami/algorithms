@@ -37,16 +37,3 @@ defmodule Solution do
     end)
   end
 end
-
-x = [
-  [0,0,1,0],
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0],
-  [1,0,0,0]
-]
-
-Solution.num_special(x)
-
-# horizontal = [1,0,0,0,1]
-# vertical =   [1,0,1,0]
