@@ -1,31 +1,25 @@
-// Solution for: https://leetcode.com/problems/count-number-of-homogenous-substrings/
 /**
  * @param {string} s
  * @return {number}
  */
 var countHomogenous = function(s) {
     
-    const getCounter = (w, index, prev, map) => {
-        if (index >= w.length) return map;
+    let result = 0;
 
-        if (w[index] === prev[0]) {
-            map[prev + w[index]] = (map[prev + w[index]] || 0) + 1;
-            // TODO: Looping througth a huge amount of repeated charecters can
-            // cause time limit for this algorithm O(n!) in some cases
-            for (let i = 1; i <= prev.length; i++) {
-                const subStr = prev.substr(0, i);
-                map[subStr]++;
-            }
-            prev += w[index];
+    const getCounter = (w, index, prev, prevCounter) => {
+        if (index >= w.length) return;
+
+        if (w[index] === prev) {
+            result = result + prevCounter * (prevCounter+ 1) / 2;
         } else {
-            map[w[index]] = (map[w[index]] || 0) + 1;
-            prev = w[index];
+            prevCounter = 1;
+            result++;
         }
 
-        return getCounter(w, index + 1, prev, map);
+        return getCounter(w, index + 1, w[index], prevCounter + 1);
     }
 
-    return Object.values(getCounter(s, 0, '', {})).reduce((prev, act) => {
-        return prev + act
-    }, 0);
+    getCounter(s, 0, s[0], 1);
+
+    return result;
 };
