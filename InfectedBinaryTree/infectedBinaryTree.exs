@@ -44,12 +44,18 @@ defmodule Solution do
   # Get root traversal the nodes recursively
   defp root_traversal([], _, _, counter), do: counter
   defp root_traversal(root_as_list, root, visited, counter) do
+
+    # Update the list of nodes with the ones that will be visited
     new_visited = Map.merge(visited, Enum.reduce(root_as_list, %{}, fn(node, acc) ->
       Map.put(acc, node.val, true)
     end))
+
+    # Update the list with the children and parents of these nodes (root_as_list)
     new_root_list = root_as_list |> Enum.reduce([], fn(node, acc) ->
       acc ++ [node.left, node.right, get_node_parent(root, node)]
     end) |> Enum.filter(fn(node) -> node != nil and visited[node.val] != true end)
+
+    # Recursively traversal trought all the nodes of the root
     root_traversal(new_root_list, root, new_visited, counter + 1)
   end
 
