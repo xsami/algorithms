@@ -25,22 +25,6 @@ defmodule Solution do
     end
   end
 
-  # Get the parent from a node or nil it's root
-  defp get_node_parent(nil, _), do: nil # safeguard, but this should never be true
-  defp get_node_parent(root, child_node) do
-    if child_node.val == root.val do
-      nil
-    else
-      if (root.left != nil and root.left.val == child_node.val) or (root.right != nil and root.right.val == child_node.val) do
-        root
-      else
-        left = get_node_parent(root.left, child_node)
-        right = get_node_parent(root.right, child_node)
-        left || right
-      end
-    end
-  end
-
   # Get root traversal the nodes recursively
   defp root_traversal([], _, _, counter), do: counter
   defp root_traversal(root_as_list, root, visited, counter) do
@@ -52,7 +36,7 @@ defmodule Solution do
 
     # Update the list with the children and parents of these nodes (root_as_list)
     new_root_list = root_as_list |> Enum.reduce([], fn(node, acc) ->
-      acc ++ [node.left, node.right, get_node_parent(root, node)]
+      acc ++ [node.left, node.right]
     end) |> Enum.filter(fn(node) -> node != nil and visited[node.val] != true end)
 
     # Recursively traversal trought all the nodes of the root
