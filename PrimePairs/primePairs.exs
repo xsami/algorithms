@@ -1,5 +1,3 @@
-# Solution for: https://leetcode.com/problems/prime-pairs-with-target-sum/description/
-
 defmodule Solution do
 
   defp get_prime_numbers(n) do
@@ -18,7 +16,7 @@ defmodule Solution do
   end
 
   defp get_prime_pair(primes, n) do
-    2..div(n, 2) |> Enum.reduce([], fn(val, acc) ->
+    div(n, 2)..2 |> Enum.reduce([], fn(val, acc) ->
       if primes[val] == nil and primes[n - val] == nil do
         [[val, n-val] | acc]
       else
@@ -32,7 +30,7 @@ defmodule Solution do
 
     if n > 3 do
       primes = get_prime_numbers(n * 2)
-      get_prime_pair(primes, n) |> Enum.reverse
+      get_prime_pair(primes, n)
     else
       []
     end
