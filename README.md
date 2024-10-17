@@ -1,10 +1,10 @@
 # Algorithm
 
-The purpose of this repo is to store algorithms that I have solved in differents website, interviews, or made by myself
+The purpose of this repo is to store algorithms that I have solved in different website, interviews, or made by myself
 
 ### TODO:
 
-Make a section for data structure implementations and algorithm.
+Make a section for data structure implementations and algorithms
 Try to complete the algorithm from this website: https://www.geeksforgeeks.org/fundamentals-of-algorithms/
 updates: add more test
 
@@ -12,7 +12,7 @@ updates: add more test
 * Time Complexity
 * Good Practices
 * Data Structures
-* Trade Off
+* Trade-Off
 * Divide and Conquer
 * Suffix array
 * Graphs - strongly connected components
@@ -20,6 +20,5 @@ updates: add more test
 * Traveler problem
 * Dijkstra
 * Vertex Cover
-* etc...
 
 Here we go again...
